@@ -1,0 +1,18 @@
+.theme-dark {
+    background: #232323;
+    color: #f5f5f4;
+  }
+
+
+  #canvas {
+    display: flex;
+    flex-wrap: wrap;
+    height: inherit;
+    width: 400px;
+    height: 400px;
+    outline: 2px solid black; 
+}
+divp {
+    height: 10px;
+    width: 10px;
+}
