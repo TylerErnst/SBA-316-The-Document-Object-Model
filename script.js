@@ -43,7 +43,8 @@ const inpColor = document.querySelector('#inp-c');
 // Use the parent-child-sibling relationship to navigate between elements at least once (firstChild, lastChild, parentNode, nextElementSibling, etc.).
 const clearButton = colorSelect.lastElementChild;
 const darkButton = document.getElementById('darkButton')
-const resolutionButton = resolution.lastElementChild;
+const resolutionButton = document.getElementById('resolutionButton');
+const maxResolutionButton = resolution.lastElementChild;
 // Iterate over a collection of elements to accomplish some task.
 //          Radio buttons?
 //          Bubble?
@@ -88,8 +89,11 @@ clearButton.addEventListener("click", (event) => {
 // Register at least two different event listeners and create the associated event handler functions.
 //          See above 2
 
-// Use at least two Browser Object Model (BOM) properties or methods.
-// Include at least one form and/or input with HTML attribute validation.
+// Use at least two Browser Object Model (BOM) properties or methods. done
+//      Max resoultion of canvas
+//      screen.availWidth
+//      screen.availHeight
+// Include at least one form and/or input with HTML attribute validation. done
 // Include at least one form and/or input with DOM event-based validation. (This can be the same form or input as the one above, but should include event-based validation in addition to the HTML attribute validation.)
 // Ensure that the program runs without errors (comment out things that do not work, and explain your blockers - you can still receive partial credit).
 // Commit frequently to the git repository.
@@ -104,15 +108,21 @@ function setResolution (width, height){
     //Using default size of 10 for pixels
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
-    pixelWidthBox.style.value = width;
-    pixelHeightBox.style.value = height;
+    console.log(pixelHeightBox.style.width)
+    
+    pixelWidthBox.value = width;
+    pixelHeightBox.value = height;
+    console.log(pixelHeightBox.value)
 }
+
+
 
 //Ask user for new resolution
 //Form with submit event
 //Check for correct input (number) -- done with input type
 //adjust to be a multiple of pixel size
 resolutionButton.addEventListener("click", (event) => {
+
     resoultionWidth = pixelWidthBox.value;
     resoultionHeight = pixelHeightBox.value;
     let pixels = (resoultionHeight/pixelSize) * (resoultionWidth/pixelSize);
@@ -121,7 +131,11 @@ resolutionButton.addEventListener("click", (event) => {
     createCanvas(canvas, pixels);
 });
 
-
+maxResolutionButton.addEventListener("click", (event) => {
+    let width = screen.availWidth;
+    let height = screen.availHeight;
+    setResolution(width, height);    
+});
 
 
 
