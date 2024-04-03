@@ -48,6 +48,12 @@ const maxResolutionButton = resolution.lastElementChild;
 // Iterate over a collection of elements to accomplish some task.
 //          Radio buttons?
 //          Bubble?
+//      Determine if there is any color in any div (does an image of some kind exist)
+//      Warn user if about to clear
+
+
+
+
 // Create at least one element using createElement.
 // Use appendChild and/or prepend to add new elements to the DOM.
 function  createCanvas(canvas, pixelCount){
@@ -106,13 +112,22 @@ clearButton.addEventListener("click", (event) => {
 
 function setResolution (width, height){
     //Using default size of 10 for pixels
+    let pixelSize = 10;
+
+    //Round width & height to fit pixel size
+    width = Math.round(width);
+    width -= width % pixelSize;
+    height = Math.round(height);
+    height -= height % pixelSize;
+
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
-    console.log(pixelHeightBox.style.width)
     
     pixelWidthBox.value = width;
     pixelHeightBox.value = height;
-    console.log(pixelHeightBox.value)
+
+    let pixels = (width/pixelSize) * (height/pixelSize);
+    createCanvas(canvas, pixels);
 }
 
 
@@ -128,12 +143,11 @@ resolutionButton.addEventListener("click", (event) => {
     let pixels = (resoultionHeight/pixelSize) * (resoultionWidth/pixelSize);
     canvas.innerHTML = '';
     setResolution(resoultionWidth, resoultionHeight);
-    createCanvas(canvas, pixels);
 });
 
 maxResolutionButton.addEventListener("click", (event) => {
-    let width = screen.availWidth;
-    let height = screen.availHeight;
+    let width = screen.availWidth * .9;
+    let height = screen.availHeight * .7;
     setResolution(width, height);    
 });
 
@@ -150,7 +164,6 @@ let pixelSize = 10;
 let pixels = (resoultionHeight/pixelSize) * (resoultionWidth/pixelSize);
 //Create Canvas
 setResolution(resoultionWidth, resoultionHeight);
-createCanvas(canvas, pixels);
 
 
 
