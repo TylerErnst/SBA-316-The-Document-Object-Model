@@ -73,6 +73,23 @@ function  createCanvas(canvas, pixelCount){
     }
 }
 
+function  clearCanvas(canvas, pixelCount){
+    
+    //Check if canvas is not empty
+    console.log(!checkCanvasIfEmpty(canvas));
+    if (!checkCanvasIfEmpty(canvas)){
+        if (!confirm('Canvas is not empty, proceeding will clear. Continue?')){
+            console.log(`Don't Delete`);
+            return false;
+        }else{
+            console.log(`delete`);
+        }
+    }
+    canvas.innerHTML = '';
+    createCanvas(canvas,pixelCount);
+    return true;
+}
+
 
 // Use the DocumentFragment interface or HTML templating with the cloneNode method to create templated content. 
 // Modify the HTML or text content of at least one element in response to user interaction using innerHTML, innerText, or textContent.
@@ -99,9 +116,9 @@ inpColor.addEventListener("change", (event) => {
   
 // Modify at least one attribute of an element in response to user interaction.
 clearButton.addEventListener("click", (event) => {
-    console.log(checkCanvasIfEmpty(canvas));
-    canvas.innerHTML = '';
-    createCanvas(canvas, pixels);
+    let height = canvas.style.height.replace(/[^0-9]/g, '');
+    let width = canvas.style.width.replace(/[^0-9]/g, '');
+    setResolution (width, height);
 });
 // Register at least two different event listeners and create the associated event handler functions.
 //          See above 2
@@ -131,14 +148,14 @@ function setResolution (width, height){
     height = Math.round(height);
     height -= height % pixelSize;
 
-    canvas.style.width = `${width}px`;
+    let pixels = (width/pixelSize) * (height/pixelSize);
+    if (clearCanvas(canvas, pixels)){
+        canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     
     pixelWidthBox.value = width;
     pixelHeightBox.value = height;
-
-    let pixels = (width/pixelSize) * (height/pixelSize);
-    createCanvas(canvas, pixels);
+    }
 }
 
 
@@ -151,8 +168,8 @@ resolutionButton.addEventListener("click", (event) => {
 
     resoultionWidth = pixelWidthBox.value;
     resoultionHeight = pixelHeightBox.value;
-    let pixels = (resoultionHeight/pixelSize) * (resoultionWidth/pixelSize);
-    canvas.innerHTML = '';
+    // let pixels = (resoultionHeight/pixelSize) * (resoultionWidth/pixelSize);
+    // canvas.innerHTML = '';
     setResolution(resoultionWidth, resoultionHeight);
 });
 
