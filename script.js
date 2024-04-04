@@ -51,7 +51,17 @@ const maxResolutionButton = resolution.lastElementChild;
 //      Determine if there is any color in any div (does an image of some kind exist)
 //      Warn user if about to clear
 
-
+function checkCanvasIfEmpty (canvas){
+    let child=canvas.firstElementChild
+    while (child != null){
+        //console.log(child);
+        if (child.style.backgroundColor !== ""){
+            return false
+        }
+        child = child.nextElementSibling;
+    }
+    return true;
+}
 
 
 // Create at least one element using createElement.
@@ -89,6 +99,7 @@ inpColor.addEventListener("change", (event) => {
   
 // Modify at least one attribute of an element in response to user interaction.
 clearButton.addEventListener("click", (event) => {
+    console.log(checkCanvasIfEmpty(canvas));
     canvas.innerHTML = '';
     createCanvas(canvas, pixels);
 });
@@ -164,6 +175,8 @@ let pixelSize = 10;
 let pixels = (resoultionHeight/pixelSize) * (resoultionWidth/pixelSize);
 //Create Canvas
 setResolution(resoultionWidth, resoultionHeight);
+
+
 
 
 
