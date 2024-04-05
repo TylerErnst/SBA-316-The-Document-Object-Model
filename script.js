@@ -143,7 +143,7 @@ function setResolution (width, height){
     //Using default size of 10 for pixels
     let pixelSize = 10;
 
-    //Prevent size from going over max size
+    //Prevent resolution from going over max size
     if (width > (screen.availWidth * .9)){
         width = screen.availWidth * .9;
     }
