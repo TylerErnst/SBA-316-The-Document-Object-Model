@@ -143,6 +143,14 @@ function setResolution (width, height){
     //Using default size of 10 for pixels
     let pixelSize = 10;
 
+    //Prevent size from going over max size
+    if (width > (screen.availWidth * .9)){
+        width = screen.availWidth * .9;
+    }
+    if (height > (screen.availHeight * .7)){
+        height = screen.availHeight * .7
+    }
+
     //Round width & height to fit pixel size
     width = Math.round(width);
     width -= width % pixelSize;
@@ -152,10 +160,10 @@ function setResolution (width, height){
     let pixels = (width/pixelSize) * (height/pixelSize);
     if (clearCanvas(canvas, pixels)){
         canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    
-    pixelWidthBox.value = width;
-    pixelHeightBox.value = height;
+        canvas.style.height = `${height}px`;
+        
+        pixelWidthBox.value = width;
+        pixelHeightBox.value = height;
     }
 }
 
