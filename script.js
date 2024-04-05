@@ -39,8 +39,6 @@ setResolution(resoultionWidth, resoultionHeight);
 
 
 // Iterate over a collection of elements to accomplish some task.
-//          Radio buttons?
-//          Bubble?
 //      Determine if there is any color in any div (does an image of some kind exist)
 //      Warn user if about to clear
 
@@ -92,7 +90,14 @@ function  clearCanvas(canvas, pixelCount){
 darkButton.addEventListener("click", (e) => {
     e.stopPropagation();
     document.body.classList.toggle("theme-dark");
-    console.log('toggle')
+    if (document.body.classList.value == "theme-dark"){
+        console.log('dark');
+        darkButton.innerHTML = 'Light Mode';
+    }else{
+        console.log('light');
+        darkButton.innerHTML = 'Dark Mode';
+    }
+    console.log('toggle');
   });
 
 canvas.addEventListener("mouseover", (event) => {
@@ -128,12 +133,7 @@ maxResolutionButton.addEventListener("click", (event) => {
     setResolution(width, height);    
 });
 
-// Include at least one form and/or input with HTML attribute validation. done
-// Include at least one form and/or input with DOM event-based validation. (This can be the same form or input as the one above, but should include event-based validation in addition to the HTML attribute validation.)
-// Ensure that the program runs without errors (comment out things that do not work, and explain your blockers - you can still receive partial credit).
-// Commit frequently to the git repository.
-// Include a README file that contains a description of your application.
-// Level of effort displayed in creativity, presentation, and user experience.
+
 
 
 
@@ -192,3 +192,12 @@ resolutionButton.addEventListener("click", (event) => {
 
 
 
+// Use the DocumentFragment interface or HTML templating with the cloneNode method to create templated content. 
+//      Open in new window
+//      clone?
+//
+//      Previously used colors?
+
+// Include at least one form and/or input with DOM event-based validation. (This can be the same form or input as the one above, but should include event-based validation in addition to the HTML attribute validation.)
+
+// Include a README file that contains a description of your application.
